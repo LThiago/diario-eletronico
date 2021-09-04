@@ -31,11 +31,11 @@ public class Turma {
     @Column(name = "codigo")
     private String codigo;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "turmas")
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     @JsonIgnore
     private Set<Aluno> alunos;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "turmas")
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     @JsonIgnore
     private Set<Professor> professores;
 

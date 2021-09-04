@@ -37,18 +37,18 @@ public class Aluno extends User {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     @JoinTable(name = "aluno_turma", joinColumns = @JoinColumn(name = "aluno_id"), inverseJoinColumns = @JoinColumn(name = "turma_id"))
     @JsonIgnore
     private Set<Turma> turmas;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "projeto_id")
     private Projeto projeto;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "papel_projeto")
-    private PapelProjeto papel_projeto;
+    private PapelProjeto papelProjeto;
 
     public Aluno(String nome, String matricula, String email, String username, String password) {
         this.nome = nome;
@@ -58,7 +58,7 @@ public class Aluno extends User {
         this.password = password;
         this.turmas = new HashSet<>();
         this.projeto = null;
-        this.papel_projeto = null;
+        this.papelProjeto = null;
     }
 
     public Aluno(User user) {
@@ -69,7 +69,7 @@ public class Aluno extends User {
         this.password = user.getPassword();
         this.turmas = new HashSet<>();
         this.projeto = null;
-        this.papel_projeto = null;
+        this.papelProjeto = null;
     }
 
 }

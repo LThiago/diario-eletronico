@@ -64,7 +64,7 @@ public class ProjetoService {
     public Projeto vinculaProfessor(Long projetoId, Long professorId, Projeto projetoRequest) throws NaoEncontradoException {
         return projetoRepository.findById(projetoId).map(projeto -> {
             Professor professor = professorRepository.getById(professorId);
-            projeto.setProfessor(professor);
+            projeto.setCoordenador(professor);
             professor.setProjeto(projeto);
             professorRepository.save(professor);
             return projetoRepository.save(projeto);

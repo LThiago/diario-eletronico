@@ -40,17 +40,17 @@ public class Professor extends User {
     @Column(name = "formacao")
     private String formacao;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     @JoinTable(name = "professor_turma", joinColumns = @JoinColumn(name = "professor_id"), inverseJoinColumns = @JoinColumn(name = "turma_id"))
     @JsonIgnore
     private Set<Turma> turmas;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST})
     private Projeto projeto;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "papel_projeto")
-    private PapelProjeto papel_projeto;
+    private PapelProjeto papelProjeto;
 
     public Professor(String nome, String formacao, String matricula, String email, String username, String password) {
         this.nome = nome;
@@ -61,7 +61,7 @@ public class Professor extends User {
         this.formacao = formacao;
         this.turmas = new HashSet<>();
         this.projeto = null;
-        this.papel_projeto = null;
+        this.papelProjeto = null;
     }
 
     public Professor(User user) {
@@ -73,7 +73,7 @@ public class Professor extends User {
         this.formacao = null;
         this.turmas = new HashSet<>();
         this.projeto = null;
-        this.papel_projeto = null;
+        this.papelProjeto = null;
     }
 
 }
