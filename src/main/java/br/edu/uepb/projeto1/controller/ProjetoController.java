@@ -10,7 +10,6 @@ import br.edu.uepb.projeto1.dto.ProjetoDTO;
 import br.edu.uepb.projeto1.mapper.AlunoMapper;
 import br.edu.uepb.projeto1.mapper.ProfessorMapper;
 import br.edu.uepb.projeto1.mapper.ProjetoMapper;
-import br.edu.uepb.projeto1.services.AlunoService;
 import br.edu.uepb.projeto1.services.ProjetoService;
 import br.edu.uepb.projeto1.dto.AlunoDTO;
 import br.edu.uepb.projeto1.dto.GenericResponseErrorDTO;
@@ -43,9 +42,6 @@ public class ProjetoController {
 
     @Autowired
     private AlunoMapper alunoMapper;
-
-    @Autowired
-    private AlunoService alunoService; 
 
     @GetMapping
     @ApiOperation(value = "Obtém uma lista de projetos")
