@@ -1,0 +1,513 @@
+{
+	"info": {
+		"_postman_id": "80d65d28-88f1-458c-ab2b-63edc6c57357",
+		"name": "diario-eletronico-heroku",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Aluno",
+			"item": [
+				{
+					"name": "Criar Aluno",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matricula\": \"123456789\",\r\n    \"nome\": \"Luis Thiago Costa Henrique\",\r\n    \"email\": \"thiago@gmail.com\",\r\n    \"username\": \"lthiago\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/alunos",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"alunos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Alunos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/alunos",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"alunos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Aluno",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/alunos/2",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"alunos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Aluno",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matricula\": \"987654321\",\r\n    \"nome\": \"Luis Thiago\",\r\n    \"email\": \"thiago@hotmail.com\",\r\n    \"username\": \"lthiag\",\r\n    \"password\": \"passwor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/alunos/2",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"alunos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Aluno",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/alunos/7",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"alunos",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Professor",
+			"item": [
+				{
+					"name": "Criar Professor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matricula\": \"333333333\",\r\n    \"nome\": \"Ramon Bezerra da Nóbrega\",\r\n    \"email\": \"ramon@hotmail.com\",\r\n    \"formacao\": \"Ciência da Computação\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/professores",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"professores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Professores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/professores",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"professores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Professor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/professores/4",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"professores",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Professor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matricula\": \"987654123321\",\r\n    \"nome\": \"Apenas o nome foi alterado\",\r\n    \"email\": \"ramon@gmail.com\",\r\n    \"formacao\": \"Ciência da Computação\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/professores/4",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"professores",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Professor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/professores/15",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"professores",
+								"15"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Turma",
+			"item": [
+				{
+					"name": "Criar Turma",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Programação Web & Infraestrutura para EAD\",\r\n    \"sala\": \"LAB.INF.III (CIAC)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/turmas",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"turmas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Turmas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/turmas",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"turmas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Turma",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/turmas/1",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"turmas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Turma",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"nome\": \"Apenas o nome foi alterado\",\r\n    \"sala\": \"LAB.INF.III (CIAC)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/turmas/1",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"turmas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Turma",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/turmas/1",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"turmas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Projetos",
+			"item": [
+				{
+					"name": "Criar Turma",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Ocariot\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/projetos",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"projetos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Projetos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/turmas",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"turmas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Projeto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/turmas/1",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"turmas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Turma",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"nome\": \"Apenas o nome foi alterado\",\r\n    \"sala\": \"LAB.INF.III (CIAC)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/turmas/1",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"turmas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Turma",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://diario-eletronico.herokuapp.com/turmas/16",
+							"protocol": "https",
+							"host": [
+								"diario-eletronico",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"turmas",
+								"16"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

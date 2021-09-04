@@ -27,7 +27,7 @@ import javassist.NotFoundException;
 public class ProjetoController {
 
     @Autowired
-    private ProjetoService projetoService; 
+    private ProjetoService projetoService;
 
     @Autowired
     private ProjetoMapper projetoMapper;
@@ -36,9 +36,7 @@ public class ProjetoController {
     @ApiOperation(value = "Obtém uma lista de projetos")
     public List<ProjetoDTO> getProjetos() {
         List<Projeto> projetos = projetoService.listAllProjetos();
-        return projetos.stream()
-                        .map(projetoMapper::convertToProjetoDTO)
-                        .collect(Collectors.toList());
+        return projetos.stream().map(projetoMapper::convertToProjetoDTO).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
@@ -65,7 +63,8 @@ public class ProjetoController {
     @Transactional
     @PutMapping("/{id}")
     @ApiOperation(value = "Atualiza um projeto")
-    public ProjetoDTO updateProjeto(@PathVariable("id") Long id, @RequestBody ProjetoDTO projetoDTO) throws NaoEncontradoException {
+    public ProjetoDTO updateProjeto(@PathVariable("id") Long id, @RequestBody ProjetoDTO projetoDTO)
+            throws NaoEncontradoException {
         Projeto projeto = projetoMapper.convertFromProjetoDTO(projetoDTO);
         projetoService.updateProjeto(id, projeto);
         return projetoMapper.convertToProjetoDTO(projetoService.updateProjeto(id, projeto));
@@ -74,13 +73,14 @@ public class ProjetoController {
     @Transactional
     @PutMapping("/{projetoId}/vincularAluno/{alunoId}")
     @ApiOperation(value = "Vincula um aluno em um projeto")
-    public ProjetoDTO matricularAluno(@PathVariable("projetoId") Long projetoId, @PathVariable("alunoId") Long alunoId, @RequestBody ProjetoDTO projetoDTO) throws NaoEncontradoException {
+    public ProjetoDTO matricularAluno(@PathVariable("projetoId") Long projetoId, @PathVariable("alunoId") Long alunoId,
+            @RequestBody ProjetoDTO projetoDTO) throws NaoEncontradoException {
         Projeto projeto = projetoMapper.convertFromProjetoDTO(projetoDTO);
         return projetoMapper.convertToProjetoDTO(projetoService.vinculaAluno(projetoId, alunoId, projeto));
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "Remove um projeto")
+    @ApiOperation(value = "Remove um projeto vazio")
     public void deleteProjeto(@PathVariable Long id) {
         projetoService.deleteProjeto(id);
     }
