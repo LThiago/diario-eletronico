@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,7 +28,7 @@ import javassist.NotFoundException;
 public class ProjetoController {
 
     @Autowired
-    private ProjetoService projetoService;
+    private ProjetoService projetoService; 
 
     @Autowired
     private ProjetoMapper projetoMapper;
@@ -36,7 +37,9 @@ public class ProjetoController {
     @ApiOperation(value = "Obtém uma lista de projetos")
     public List<ProjetoDTO> getProjetos() {
         List<Projeto> projetos = projetoService.listAllProjetos();
-        return projetos.stream().map(projetoMapper::convertToProjetoDTO).collect(Collectors.toList());
+        return projetos.stream()
+                        .map(projetoMapper::convertToProjetoDTO)
+                        .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
@@ -51,10 +54,10 @@ public class ProjetoController {
 
     @PostMapping
     @ApiOperation(value = "Cria um projeto")
-    public ResponseEntity<?> createProjeto(@RequestBody ProjetoDTO projetoDTO) {
+    public ResponseEntity<?> createProjeto(Authentication authentication, @RequestBody ProjetoDTO projetoDTO) {
         try {
             Projeto projeto = projetoMapper.convertFromProjetoDTO(projetoDTO);
-            return new ResponseEntity<>(projetoService.createProjeto(projeto), HttpStatus.CREATED);
+            return new ResponseEntity<>(projetoService.createProjeto(projeto, authentication), HttpStatus.CREATED);
         } catch (ExistingSameNameException e) {
             return ResponseEntity.badRequest().body(new GenericResponseErrorDTO(e.getMessage()));
         }
@@ -63,8 +66,7 @@ public class ProjetoController {
     @Transactional
     @PutMapping("/{id}")
     @ApiOperation(value = "Atualiza um projeto")
-    public ProjetoDTO updateProjeto(@PathVariable("id") Long id, @RequestBody ProjetoDTO projetoDTO)
-            throws NaoEncontradoException {
+    public ProjetoDTO updateProjeto(@PathVariable("id") Long id, @RequestBody ProjetoDTO projetoDTO) throws NaoEncontradoException {
         Projeto projeto = projetoMapper.convertFromProjetoDTO(projetoDTO);
         projetoService.updateProjeto(id, projeto);
         return projetoMapper.convertToProjetoDTO(projetoService.updateProjeto(id, projeto));
@@ -73,10 +75,9 @@ public class ProjetoController {
     @Transactional
     @PutMapping("/{projetoId}/vincularAluno/{alunoId}")
     @ApiOperation(value = "Vincula um aluno em um projeto")
-    public ProjetoDTO matricularAluno(@PathVariable("projetoId") Long projetoId, @PathVariable("alunoId") Long alunoId,
-            @RequestBody ProjetoDTO projetoDTO) throws NaoEncontradoException {
+    public ProjetoDTO matricularAluno(Authentication authentication, @PathVariable("projetoId") Long projetoId, @PathVariable("alunoId") Long alunoId, @RequestBody ProjetoDTO projetoDTO) throws NaoEncontradoException {
         Projeto projeto = projetoMapper.convertFromProjetoDTO(projetoDTO);
-        return projetoMapper.convertToProjetoDTO(projetoService.vinculaAluno(projetoId, alunoId, projeto));
+        return projetoMapper.convertToProjetoDTO(projetoService.vinculaAluno(projetoId, alunoId, projeto, authentication));
     }
 
     @DeleteMapping("/{id}")

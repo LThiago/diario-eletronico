@@ -33,9 +33,10 @@ public class Projeto1Application implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(Projeto1Application.class, args);
 	}
-    // http://localhost:8080/
-    // http://localhost:8080/h2-console
-    // http://localhost:8080/swagger-ui.html
+    // http://localhost:5000/
+    // http://localhost:5000/h2-console
+    // http://localhost:5000/swagger-ui.html
+    // Senhas dos usuários: 1234
 
     @Override
     public void run(String... args) throws Exception {
@@ -46,28 +47,28 @@ public class Projeto1Application implements CommandLineRunner {
         projetoRepository.deleteAllInBatch();
 
         Turma turma1 = new Turma("WEB", "201", "1234567");
-		Professor professor1 = new Professor("Ramon", "Computação", "123456781", "ramon@gmail.com", "ramon", "1234");
+		Professor professor1 = new Professor("Ramon", "Computação", "123456781", "ramon@gmail.com", "ramon", "$2a$10$Y09SMythRjVfYEtmonIA3OROVbLirm0lnUPXpApMlZpazCZlFBt5e");
         Projeto projeto1 = new Projeto("Spring Boot", "Curso básico de Spring Boot", professor1);
         professor1.getTurmas().add(turma1);
         turma1.getProfessores().add(professor1);
         professor1.setProjeto(projeto1);
         professor1.setPapelProjeto(PapelProjeto.COORDENADOR);
 
-        Aluno aluno1 = new Aluno("Gustavo Silva", "123456782", "ghustavosm@gmail.com", "gustavo", "1234");
+        Aluno aluno1 = new Aluno("Gustavo Silva", "123456782", "ghustavosm@gmail.com", "gustavo", "$2a$10$Y09SMythRjVfYEtmonIA3OROVbLirm0lnUPXpApMlZpazCZlFBt5e");
         aluno1.getTurmas().add(turma1);
         turma1.getAlunos().add(aluno1);
         aluno1.setProjeto(projeto1);
         projeto1.getAlunos().add(aluno1);
         aluno1.setPapelProjeto(PapelProjeto.ESTAGIO);
         
-        Aluno aluno2 = new Aluno("Lucas Gabriel", "123456783", "lucasgabriel@gmail.com", "lucas", "1234");
+        Aluno aluno2 = new Aluno("Lucas Gabriel", "123456783", "lucasgabriel@gmail.com", "lucas", "$2a$10$Y09SMythRjVfYEtmonIA3OROVbLirm0lnUPXpApMlZpazCZlFBt5e");
         aluno2.getTurmas().add(turma1);
         turma1.getAlunos().add(aluno2);
         aluno2.setProjeto(projeto1);        
         projeto1.getAlunos().add(aluno2);
         aluno2.setPapelProjeto(PapelProjeto.JUNIOR);
         
-        Aluno aluno3 = new Aluno("Tiago Silva", "123456784", "tiagosilva@gmail.com", "tiago", "1234");
+        Aluno aluno3 = new Aluno("Tiago Silva", "123456784", "tiagosilva@gmail.com", "tiago", "$2a$10$Y09SMythRjVfYEtmonIA3OROVbLirm0lnUPXpApMlZpazCZlFBt5e");
 
         turmaRepository.save(turma1);
         projetoRepository.save(projeto1);

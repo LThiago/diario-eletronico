@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
 
 import br.edu.uepb.projeto1.domain.Projeto;
 import br.edu.uepb.projeto1.domain.Aluno;
@@ -27,9 +28,12 @@ public class ProjetoService {
     @Autowired
     private ProfessorRepository professorRepository;
 
-    public Projeto createProjeto(Projeto projeto) throws ExistingSameNameException {
-        if (projetoRepository.findByNome(projeto.getNome()).isPresent())
+    public Projeto createProjeto(Projeto projeto, Authentication authentication) throws ExistingSameNameException {
+        if(!professorRepository.findByUsername(authentication.getName()).isPresent()) {
+            throw new ExistingSameNameException("Apenas professores podem criar projetos!");
+        } else if (projetoRepository.findByNome(projeto.getNome()).isPresent()) {
             throw new ExistingSameNameException("Já existe um projeto com esse nome!");
+        }
         return projetoRepository.save(projeto);
     }
 
@@ -51,7 +55,7 @@ public class ProjetoService {
         projetoRepository.delete(projetoToDelete);
     }
 
-    public Projeto vinculaAluno(Long projetoId, Long alunoId, Projeto projetoRequest) throws NaoEncontradoException {
+    public Projeto vinculaAluno(Long projetoId, Long alunoId, Projeto projetoRequest, Authentication authentication) throws NaoEncontradoException {
         return projetoRepository.findById(projetoId).map(projeto -> {
             Aluno aluno = alunoRepository.getById(alunoId);
             projeto.getAlunos().add(aluno);

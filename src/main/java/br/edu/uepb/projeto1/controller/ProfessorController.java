@@ -24,7 +24,7 @@ import javassist.NotFoundException;
 public class ProfessorController {
 
     @Autowired
-    private ProfessorService professorService;
+    private ProfessorService professorService; 
 
     @Autowired
     private ProfessorMapper professorMapper;
@@ -33,15 +33,16 @@ public class ProfessorController {
     @ApiOperation(value = "Obtém uma lista de professores")
     public List<ProfessorDTO> getProfessors() {
         List<Professor> professores = professorService.listAllProfessors();
-        return professores.stream().map(professorMapper::convertToProfessorDTO).collect(Collectors.toList());
+        return professores.stream()
+                        .map(professorMapper::convertToProfessorDTO)
+                        .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtém um professor a partir do ID")
     public ResponseEntity<?> getProfessorById(@PathVariable Long id) {
         try {
-            return new ResponseEntity<>(professorMapper.convertToProfessorDTO(professorService.findById(id)),
-                    HttpStatus.OK);
+            return new ResponseEntity<>(professorMapper.convertToProfessorDTO(professorService.findById(id)), HttpStatus.OK);
         } catch (NotFoundException e) {
             return ResponseEntity.badRequest().body(new GenericResponseErrorDTO(e.getMessage()));
         }
@@ -66,9 +67,9 @@ public class ProfessorController {
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "Remove um professor que não esteja vinculado a nenhum projeto ou turma")
+    @ApiOperation(value = "Remove um professor")
     public void deleteProfessor(@PathVariable Long id) {
         professorService.deleteProfessor(id);
     }
-
+    
 }

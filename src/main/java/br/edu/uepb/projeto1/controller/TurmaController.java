@@ -27,7 +27,7 @@ import javassist.NotFoundException;
 public class TurmaController {
 
     @Autowired
-    private TurmaService turmaService;
+    private TurmaService turmaService; 
 
     @Autowired
     private TurmaMapper turmaMapper;
@@ -36,7 +36,9 @@ public class TurmaController {
     @ApiOperation(value = "Obtém uma lista de turmas")
     public List<TurmaDTO> getTurmas() {
         List<Turma> turmas = turmaService.listAllTurmas();
-        return turmas.stream().map(turmaMapper::convertToTurmaDTO).collect(Collectors.toList());
+        return turmas.stream()
+                        .map(turmaMapper::convertToTurmaDTO)
+                        .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
@@ -63,8 +65,7 @@ public class TurmaController {
     @Transactional
     @PutMapping("/{id}")
     @ApiOperation(value = "Atualiza uma turma")
-    public TurmaDTO updateTurma(@PathVariable("id") Long id, @RequestBody TurmaDTO turmaDTO)
-            throws NaoEncontradoException {
+    public TurmaDTO updateTurma(@PathVariable("id") Long id, @RequestBody TurmaDTO turmaDTO) throws NaoEncontradoException {
         Turma turma = turmaMapper.convertFromTurmaDTO(turmaDTO);
         turmaService.updateTurma(id, turma);
         return turmaMapper.convertToTurmaDTO(turmaService.updateTurma(id, turma));
@@ -73,8 +74,7 @@ public class TurmaController {
     @Transactional
     @PutMapping("/{turmaId}/matricularAluno/{alunoId}")
     @ApiOperation(value = "Matricula um aluno em uma turma")
-    public TurmaDTO matricularAluno(@PathVariable("turmaId") Long turmaId, @PathVariable("alunoId") Long alunoId,
-            @RequestBody TurmaDTO turmaDTO) throws NaoEncontradoException {
+    public TurmaDTO matricularAluno(@PathVariable("turmaId") Long turmaId, @PathVariable("alunoId") Long alunoId, @RequestBody TurmaDTO turmaDTO) throws NaoEncontradoException {
         Turma turma = turmaMapper.convertFromTurmaDTO(turmaDTO);
         return turmaMapper.convertToTurmaDTO(turmaService.matriculaAluno(turmaId, alunoId, turma));
     }
@@ -82,15 +82,13 @@ public class TurmaController {
     @Transactional
     @PutMapping("/{turmaId}/vincularProfessor/{professorId}")
     @ApiOperation(value = "Matricula um aluno em uma turma")
-    public TurmaDTO vincularProfessor(@PathVariable("turmaId") Long turmaId,
-            @PathVariable("professorId") Long professorId, @RequestBody TurmaDTO turmaDTO)
-            throws NaoEncontradoException {
-        Turma turma = turmaMapper.convertFromTurmaDTO(turmaDTO);
+    public TurmaDTO vincularProfessor(@PathVariable("turmaId") Long turmaId, @PathVariable("professorId") Long professorId, @RequestBody TurmaDTO turmaDTO) throws NaoEncontradoException {
+        Turma turma = turmaMapper.convertFromTurmaDTO(turmaDTO);        
         return turmaMapper.convertToTurmaDTO(turmaService.vinculaProfessor(turmaId, professorId, turma));
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "Remove uma turma vazia")
+    @ApiOperation(value = "Remove uma turma")
     public void deleteTurma(@PathVariable Long id) {
         turmaService.deleteTurma(id);
     }

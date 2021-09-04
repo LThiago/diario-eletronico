@@ -1,5 +1,6 @@
 package br.edu.uepb.projeto1.settings;
 
+import org.hibernate.collection.spi.PersistentCollection;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +16,9 @@ public class Projeto1MapperConfig {
     
     @Bean
     public ModelMapper modelMapper() {
-        return new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setPropertyCondition(context -> !(context.getSource() instanceof PersistentCollection));
+        return modelMapper;
     }
 
     @Bean

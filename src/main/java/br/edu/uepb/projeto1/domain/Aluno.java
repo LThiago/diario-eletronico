@@ -44,6 +44,7 @@ public class Aluno extends User {
 
     @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "projeto_id")
+    @JsonIgnore
     private Projeto projeto;
 
     @Enumerated(EnumType.STRING)

@@ -11,5 +11,6 @@ import br.edu.uepb.projeto1.domain.Aluno;
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
     Optional<Aluno> findByNome(String nome);
+    Optional<Aluno> findByUsername(String username);
 
 }

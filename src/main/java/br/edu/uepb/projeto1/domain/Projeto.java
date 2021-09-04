@@ -29,6 +29,7 @@ public class Projeto {
     private String descricao;
 
     @OneToOne(cascade = {CascadeType.PERSIST})
+    @JsonIgnore
     private Professor coordenador;
 
     @OneToMany(cascade = {CascadeType.PERSIST})

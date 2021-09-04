@@ -9,9 +9,8 @@ public class ProjetoDTO {
     
     private Long id;
     private String nome;
-    private String sala;
-    private String codigo;
-    /*private Set<AlunoDTO> alunos;
-    private Set<ProfessorDTO> professores;*/
+    private String descricao;
+    private ProfessorDTO coordenador;
+    //private Set<AlunoDTO> alunos;
 
 }

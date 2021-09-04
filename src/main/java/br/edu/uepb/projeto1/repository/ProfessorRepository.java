@@ -11,5 +11,6 @@ import br.edu.uepb.projeto1.domain.Professor;
 public interface ProfessorRepository extends JpaRepository<Professor, Long> {
 
     Optional<Professor> findByNome(String nome);
+    Optional<Professor> findByUsername(String username);
 
 }

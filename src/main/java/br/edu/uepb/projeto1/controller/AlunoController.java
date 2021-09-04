@@ -24,7 +24,7 @@ import javassist.NotFoundException;
 public class AlunoController {
 
     @Autowired
-    private AlunoService alunoService;
+    private AlunoService alunoService; 
 
     @Autowired
     private AlunoMapper alunoMapper;
@@ -33,7 +33,9 @@ public class AlunoController {
     @ApiOperation(value = "Obtém uma lista de alunos")
     public List<AlunoDTO> getAlunos() {
         List<Aluno> alunos = alunoService.listAllAlunos();
-        return alunos.stream().map(alunoMapper::convertToAlunoDTO).collect(Collectors.toList());
+        return alunos.stream()
+                        .map(alunoMapper::convertToAlunoDTO)
+                        .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
@@ -65,7 +67,7 @@ public class AlunoController {
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "Remove um aluno que não esteja vinculado a uma turma")
+    @ApiOperation(value = "Remove um aluno")
     public void deleteAluno(@PathVariable Long id) {
         alunoService.deleteAluno(id);
     }
