@@ -72,19 +72,11 @@ public class ProjetoController {
     }
 
     @Transactional
-    @PutMapping("/{projetoId}/matricularAluno/{alunoId}")
+    @PutMapping("/{projetoId}/vincularAluno/{alunoId}")
     @ApiOperation(value = "Vincula um aluno em um projeto")
     public ProjetoDTO matricularAluno(@PathVariable("projetoId") Long projetoId, @PathVariable("alunoId") Long alunoId, @RequestBody ProjetoDTO projetoDTO) throws NaoEncontradoException {
         Projeto projeto = projetoMapper.convertFromProjetoDTO(projetoDTO);
         return projetoMapper.convertToProjetoDTO(projetoService.vinculaAluno(projetoId, alunoId, projeto));
-    }
-
-    @Transactional
-    @PutMapping("/{projetoId}/vincularProfessor/{professorId}")
-    @ApiOperation(value = "Vincula um aluno em um projeto")
-    public ProjetoDTO vincularProfessor(@PathVariable("projetoId") Long projetoId, @PathVariable("professorId") Long professorId, @RequestBody ProjetoDTO projetoDTO) throws NaoEncontradoException {
-        Projeto projeto = projetoMapper.convertFromProjetoDTO(projetoDTO);        
-        return projetoMapper.convertToProjetoDTO(projetoService.vinculaProfessor(projetoId, professorId, projeto));
     }
 
     @DeleteMapping("/{id}")
