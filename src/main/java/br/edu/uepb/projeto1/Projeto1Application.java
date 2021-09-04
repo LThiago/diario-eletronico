@@ -54,6 +54,10 @@ public class Projeto1Application implements CommandLineRunner {
         professor1.setProjeto(projeto1);
         professor1.setPapelProjeto(PapelProjeto.COORDENADOR);
 
+        Professor professor2 = new Professor("Robson", "Computação", "123436881", "robson@gmail.com", "robson", "$2a$10$Y09SMythRjVfYEtmonIA3OROVbLirm0lnUPXpApMlZpazCZlFBt5e");
+        Projeto projeto2 = new Projeto("Processamento de Imagens", "Curso básico de processamento de imagens", professor2);
+        professor2.setProjeto(projeto2);
+
         Aluno aluno1 = new Aluno("Gustavo Silva", "123456782", "ghustavosm@gmail.com", "gustavo", "$2a$10$Y09SMythRjVfYEtmonIA3OROVbLirm0lnUPXpApMlZpazCZlFBt5e");
         aluno1.getTurmas().add(turma1);
         turma1.getAlunos().add(aluno1);
@@ -72,7 +76,9 @@ public class Projeto1Application implements CommandLineRunner {
 
         turmaRepository.save(turma1);
         projetoRepository.save(projeto1);
+        projetoRepository.save(projeto2);
         professorRepository.save(professor1);
+        professorRepository.save(professor2);
         alunoRepository.save(aluno1);
         alunoRepository.save(aluno2);
         alunoRepository.save(aluno3);

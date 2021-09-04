@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 
 import br.edu.uepb.projeto1.domain.Projeto;
 import br.edu.uepb.projeto1.domain.Aluno;
+import br.edu.uepb.projeto1.domain.PapelProjeto;
 import br.edu.uepb.projeto1.domain.Professor;
 import br.edu.uepb.projeto1.exceptions.ExistingSameNameException;
 import br.edu.uepb.projeto1.exceptions.NaoEncontradoException;
@@ -55,23 +56,24 @@ public class ProjetoService {
         projetoRepository.delete(projetoToDelete);
     }
 
-    public Projeto vinculaAluno(Long projetoId, Long alunoId, Projeto projetoRequest, Authentication authentication) throws NaoEncontradoException {
+    public Projeto vinculaAluno(Long projetoId, Long alunoId, String papel, Authentication authentication) throws Exception {
+        Professor professorRequest = professorRepository.findByUsername(authentication.getName()).get();
+        Projeto projetoProfessorRequest = professorRequest.getProjeto();
+
+        if(projetoProfessorRequest == null) {
+            throw new Exception("O professor não está vinculado a um projeto.");
+        } else if(professorRequest.getProjeto().getId() != projetoId) {
+            throw new Exception("Apenas o coordenador do projeto pode vincular alunos!");
+        }
+        
         return projetoRepository.findById(projetoId).map(projeto -> {
             Aluno aluno = alunoRepository.getById(alunoId);
             projeto.getAlunos().add(aluno);
             aluno.setProjeto(projeto);
+            aluno.setPapelProjeto(PapelProjeto.valueOf(papel.toUpperCase()));
             alunoRepository.save(aluno);
             return projetoRepository.save(projeto);
         }).orElseThrow(() -> new NaoEncontradoException("Projeto não encontrado."));
     }
 
-    public Projeto vinculaProfessor(Long projetoId, Long professorId, Projeto projetoRequest) throws NaoEncontradoException {
-        return projetoRepository.findById(projetoId).map(projeto -> {
-            Professor professor = professorRepository.getById(professorId);
-            projeto.setCoordenador(professor);
-            professor.setProjeto(projeto);
-            professorRepository.save(professor);
-            return projetoRepository.save(projeto);
-        }).orElseThrow(() -> new NaoEncontradoException("Projeto não encontrado."));
-    }
 }
