@@ -57,6 +57,7 @@ public class Projeto1Application implements CommandLineRunner {
         Professor professor2 = new Professor("Robson", "Computação", "123436881", "robson@gmail.com", "robson", "$2a$10$Y09SMythRjVfYEtmonIA3OROVbLirm0lnUPXpApMlZpazCZlFBt5e");
         Projeto projeto2 = new Projeto("Processamento de Imagens", "Curso básico de processamento de imagens", professor2);
         professor2.setProjeto(projeto2);
+        professor2.setPapelProjeto(PapelProjeto.COORDENADOR);
 
         Aluno aluno1 = new Aluno("Gustavo Silva", "123456782", "ghustavosm@gmail.com", "gustavo", "$2a$10$Y09SMythRjVfYEtmonIA3OROVbLirm0lnUPXpApMlZpazCZlFBt5e");
         aluno1.getTurmas().add(turma1);
